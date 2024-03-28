@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Search Results for "{{ keyword }}":</h1>
+        <a href="/{{ keyword.replace(' ', '_') }}_profiles.xlsx" download="LinkedIn_Profiles.xlsx">Export to file</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Position/Company</th>
+                    <th>Location</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile['Name'] }}</td>
+                    <td>{{ profile['Position'] }}</td>
+                    <td>{{ profile['Location'] }}</td>
+                    <td><a href="{{ profile['URL'] }}" target="_blank">Profile Link &rarr;</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
